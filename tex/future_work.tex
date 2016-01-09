@@ -1,0 +1,11 @@
+%!TEX root=../template.tex
+
+Our study provides the groundwork for memory hierarchy research based on gem5. The work we are considering to pursue after the project in this summer includes:
+
+
+\begin{itemize}
+\item For hybrid memory architecture, NVM and DRAM have different data write latency and power, we can build a hybrid memory controller based on gem5 to schedule data movement to NVM or DRAM with different power and performance requirement.    
+\item Cache replacement policy is still a good direction to improve especially for NVM. In this report, We only consider common cache replacement policy such as LIP, LRU, Random, NMRU. More specific cache replacement policy based on gem5 optimizing for NVM requires further research. 
+\item Branch prediction is also a research direction to improve, there are two branch prediction algorithm in gem5, tournament algorithm and 2bit\_local algorithm. Improved prediction algorithm for NVM architecture based on gem5 requires further research.  
+
+\end{itemize}

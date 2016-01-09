@@ -1,0 +1,41 @@
+%!TEX root=../template.tex
+
+
+
+There is increasing design challenge for traditional DRAM technology with device capacity increasing and feature size shrinking. Specifically, DRAM requires periodic refresh operation to retain the data stored in its cell, which wastes huge leakage power in the computer system. It has been shown that, for DRAM device with large capacity, the refresh operation will dramatically impact the performance and energy consumption, and the refresh operation can occupy more than 25\% of the execution time and consumes more than one-third of the total power consumption of computer. What's more, the capacitance of each cell should maintain in a constant range,  in order to prevent the refresh interval scaling with cell size, and it results in challenges for fabrication process. It is clear that memory system consumes large amount of power in modern processors due to leakage and refresh operation. Further, the scaling of DRAM to smaller feature size has become difficult, and hence, computer architects and designers have explored alternative memory technologies that provide high density and low power benefit to minimize cost. 
+
+
+
+Recently, non-volatile memory (NVM) technologies have emerged as potential replacement of DRAM technologies and attracted extensive research attention during the last few years. It can be considered as universal memory that is to combine the best attributes such as fast random access, high storage density and non-volatility into one memory technology. Industry and academia are seeking solutions in some of the emerging non-volatile memory techniques, including spin-torque-transfer random-access memory (STT-RAM), phase-change random-access memory (PCM), and resistive random-access memory (ReRAM). Universal memory, as indicated by its name, should work across multiple layers of the memory hierarchy. More importantly, it is expected to provide a large design space which has the potential to replace both performance-critical caches and cost-optimized secondary storage. Among the emerging NVM technologies, STT-RAM and PCM is one of the most promising candidates that has the potential to meet all the requirement of universal memory. 
+
+
+To meet the demands of power-budget of NVM computer system, many power management techniques have been proposed and applied for different kinds of computing systems, including embedded systems, personal computer and supercomputers, and all components of computing systems, such as cache and main memory. In this paper, we study several optimization techniques based on NVM system, and try to implement in gem5 ~\cite{gem5} and analyze their performance.   
+
+
+
+In this work, we analyze the impact of cache organization on NVM power consumption by integrating share L3 cache in gem5. The conventional cache architecture of gem5 only has two level cache with L1 data/instruction cache and shared L2 cache, however most modern computer systems have three level cache configuration. Also, a major challenge in future multicore processors is the unnecessary data movement caused by conventional cache hierarchies that impacts the off-chip bandwidth, on-chip memory access latency and energy consumption. Thus, to make the system more practical we try to evaluate the impact of shared L3 cache on the power consumption of NVM on gem5. 
+
+In this work, we analyze the impact of reducing NVM write traffic by reducing unnecessary clean cache write back. Because there is high write energy in NVM, so reducing unnecessary cache write back is import to save power consumption. The gem5 has default cache write back policy that when the cache block is missed it will be label invalid and write back to memory which including modified cache and unmodified cache block. Our purpose is to remove unmodified cache block to reduce write operation.  
+
+In this work, we analyze the impact of different cache replacement policy on NVM power consumption. The default cache replacement policy in gem5 is Least Recently Used (LRU) policy which replaces the least recently used items first in the cache. The LRU replacement policy has been the standard for long time. But for the emerging NVM memory with high write power and latency, how to better schedule cache replacement so as to reduce NVM write power is important. Thus, we try to evaluate different cache replacement policy in gem5 to find the balance between power and performance.        
+
+In this work, we also analyze the impact of hybrid NVM and DRAM memory architecture on system power consumption by integrating gem5 and NVMain ~\cite{nvmain}. By combining the advantage of DRAM with short latency and advantage of NVM with low leakage power, we try to analyze the power saving compared with traditional DRAM architecture. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
